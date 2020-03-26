@@ -1,4 +1,6 @@
-import apartments.Apartment;
+import Buildings.Apartment;
+import Buildings.Block;
+import Buildings.Building;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -6,17 +8,17 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        Apartment a1 = new Apartment("Warsaw", 80, 8500);
-        Apartment a2 = new Apartment("Cracow", 30, 8000);
-        Apartment a3 = new Apartment("Gdansk", 100, 7500);
+        Apartment apartment = Apartment.builder().pricePerMeter(20000).build();
 
-        List<Apartment> apartmentsList = new ArrayList<>(Arrays.asList(a1, a2, a3));
+        Building block = Block.builder()
+                              .city("Cracow")
+                              .area(10000)
+                              .numOfRooms(8500)
+                              .numOfFlats(3)
+                              .isGarage(true)
+                              .build();
 
-        double apartmentsAveragePrice = 0;
-        for (Apartment apartment : apartmentsList) {
-            apartmentsAveragePrice += apartment.getFullPrice();
-            System.out.println(String.format("Apartment in %s costs %.2f.", apartment.getCity(), apartment.getFullPrice()));
-        }
-        System.out.println("Average price is " + apartmentsAveragePrice);
+        System.out.println(block.getNumOfWindows());
+        System.out.println(apartment.getFullPrice());
     }
 }
